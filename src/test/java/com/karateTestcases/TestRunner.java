@@ -10,7 +10,8 @@ public class TestRunner {
 
 /*
 @RunWith(Karate.class): This tells JUnit to use Karate's test runner for executing the feature files.
-TestRunner class: This class doesn't need any specific method. Karate will automatically look for feature files in the classpath and execute them.
+TestRunner class: This class doesn't need any specific method. Karate will automatically 
+look for feature files in the classpath and execute them.
 
 
 */
