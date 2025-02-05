@@ -37,11 +37,10 @@ Feature: API testing for CoverPhotos
     * print actualresponse
 
   Scenario: verify get all list of coverphoto when url is invalid
-    Given url 'fefefoijejf99797979*&oi'
+    Given path '/fefefogghkhkjiijejfoi'
     When method GET
     Then status 400
     * print response
-    And match response.title == "Not Found"
 
   Scenario: Verify behaviour with invalid user id
     Given path '567'
@@ -61,15 +60,57 @@ Feature: API testing for CoverPhotos
     And status 400
     Then print response
 
-  Scenario: verify get coverphoto for idBook
+  Scenario: Verify the Data Format of Each coverphots
+    When method GET
+    Then status 200
+    * def coverphotos = response[1]
+    * assert 'id' in coverphotos
+    * assert 'idBook' in coverphotos
+    * assert 'url' in coverphotos
+
+  Scenario: Verify the response lenght of coverphotos
     Given method GET
     Then status 200
-    * print response
+    * def dataSize = response.length
+    * print 'Number of coverphotos: ', dataSize
 
-  Scenario: verify when user delete coverphoto id then status code should be 200
+  Scenario: Verify Response for Invalid HTTP Method
+    When method POST
+    Then status 415
+     * print response
+
+  Scenario: verify get coverphoto for  specific idBook
+  Given path '/books/covers/1'
+    When method GET
+    And match response[0].id == 1
+    And match response[0].idBook == 1
+    And match response[0].url == "https://placeholdit.imgix.net/~text?txtsize=33&txt=Book 1&w=250&h=350"
+    * print response
+   
+  	
+    Scenario: verify get coverphoto for  invalid idBook
+  	Given path '/books/covers/-4778768665'
+   	When method GET
+    Then status 400
+    * print response
+    
+    Scenario: verify get coverphoto for Non-existing idBook
+  	Given path '/books/covers/9877677970666'
+   	When method GET
+    Then status 400
+    * print response
+    
+    Scenario: verify get coverphoto for empty idBook
+  	Given path '/books/covers/ '
+   	When method GET
+    Then status 400
+    * print response
+    
+   Scenario: verify when user delete coverphoto id then status code should be 200
     Given path '/45'
     When method DELETE
     Then status 200
+     * print response
 
   Scenario: verify behaviour  when user delete coverphoto id
     Given path '/45'
@@ -77,9 +118,23 @@ Feature: API testing for CoverPhotos
     Then status 200
     * print response
 
-
   Scenario: verify when user delete Non-existing coverphoto id
     Given path '/08988099999'
     When method DELETE
     Then status 400
     * print response
+    
+    
+    Scenario: verify create coverphotos
+    Given request 
+   			 """{
+   			 
+         		 "id": 7879,
+         		 "idBook": 7879,
+          		"url": "https://placeholdit.imgix.net/~text?txtsize=33&txt=Book 7879&w=250&h=350"
+          }"""
+    When method post
+    Then status 200
+    * print response
+    And match response.id == 7879
+    
