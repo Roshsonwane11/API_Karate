@@ -7,6 +7,7 @@ import com.intuit.karate.junit4.Karate;
 @KarateOptions(tags = "@todays")
 public class TestRunner {
 
+    // This class will be used to run Karate tests
 }
 
 
