@@ -1,4 +1,15 @@
 Feature: Create New User
+Scenario: verify new user should be able to create
+* def baseURL = 'https://fakerestapi.azurewebsites.net/api/v1/Users'
+Given url baseURL
+And request 
+"""{
+  "id": 11,
+  "userName": "aa",
+  "password": "striaang"
+}"""
+When method POST
+Then status 200
 
   Scenario: Verify new user should be able to create successfully
     * def baseURL = 'https://fakerestapi.azurewebsites.net/api/v1/Users'
@@ -43,4 +54,4 @@ Feature: Create New User
     Then status 200
     And match response == {"id": 11,"userName": "aa","password": "striaang"}
     * print response
-    
+
