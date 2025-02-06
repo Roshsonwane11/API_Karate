@@ -1,6 +1,6 @@
 function fn() {
   var config = {
-    baseUrl: 'https://reqres.in/api/users?page=2'
+    baseUrl: 'https://fakerestapi.azurewebsites.net/index.html'
   };
   return config;
 }

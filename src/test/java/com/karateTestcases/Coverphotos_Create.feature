@@ -35,7 +35,7 @@ Feature: API testing for CoverPhotos
     And match response.title == 'One or more validation errors occurred.'
     
     
-    Scenario: verify new user should not be able to create coverphotos when required filed Url is missing 
+    Scenario: verify new user should be able to create coverphotos when required filed Url is missing 
     Given request 
    			 """{
    			 
@@ -96,7 +96,7 @@ Feature: API testing for CoverPhotos
    			 
          		 "id": fj755779dfgt,
          		 "idBook": 7879,
-          		"url":1
+          		"url": "https://plhddoldjkjkjhkjhkh"
           }"""
     When method post
     Then status 400
@@ -110,7 +110,7 @@ Feature: API testing for CoverPhotos
    			 
          		 "id": "7879",
          		 "idBook": 7879,
-          		"url":1
+          		"url": "https://placehtttddoldjkjkjhkjhkh"
           }"""
     When method post
     Then status 400
@@ -124,7 +124,7 @@ Feature: API testing for CoverPhotos
    			 
          		 "id": 7879,
          		 "idBook": "7879",
-          		"url":1
+          		"url": "https://plgcccacehddoldjkjkjhkjhkh"
           }"""
     When method post
     Then status 400
@@ -144,7 +144,7 @@ Feature: API testing for CoverPhotos
     Then status 200
     * print response
     
-    Scenario: verify coverphotos with invalid HTTP method
+    Scenario: verify  create coverphotos with invalid HTTP method
     Given request 
    			 """{
    			 
