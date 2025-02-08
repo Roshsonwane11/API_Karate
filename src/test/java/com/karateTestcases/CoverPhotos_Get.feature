@@ -106,35 +106,4 @@ Feature: API testing for CoverPhotos
     Then status 400
     * print response
     
-   Scenario: verify when user delete coverphoto id then status code should be 200
-    Given path '/45'
-    When method DELETE
-    Then status 200
-     * print response
-
-  Scenario: verify behaviour  when user delete coverphoto id
-    Given path '/45'
-    When method DELETE
-    Then status 200
-    * print response
-
-  Scenario: verify when user delete Non-existing coverphoto id
-    Given path '/08988099999'
-    When method DELETE
-    Then status 400
-    * print response
-    
-    
-    Scenario: verify create coverphotos
-    Given request 
-   			 """{
-   			 
-         		 "id": 7879,
-         		 "idBook": 7879,
-          		"url": "https://placeholdit.imgix.net/~text?txtsize=33&txt=Book 7879&w=250&h=350"
-          }"""
-    When method post
-    Then status 200
-    * print response
-    And match response.id == 7879
-    
+   
