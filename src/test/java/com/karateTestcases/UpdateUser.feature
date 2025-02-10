@@ -1,19 +1,21 @@
+
 Feature: Update User scenario
 
+  Background: 
+    * url 'https://fakerestapi.azurewebsites.net'
+    * path '/api/v1/Users/'
+    * def requestPayload = read('classpath:requestPayload/updateUserRequest.json')
+
   Scenario: verify existing user data got updated successfully
-    * def baseURL = 'https://fakerestapi.azurewebsites.net/api/v1/Users'
-    Given url baseURL
-    And path '11'
-    And request {"id": 11,"userName": "bb_updated","password": "striaang_updated"}
+    Given path '11'
+    And request requestPayload
     When method PUT
     Then status 200
     * print response
 
   Scenario: verify all fields in response are matching with request for updated user
-    * def baseURL = 'https://fakerestapi.azurewebsites.net/api/v1/Users'
-    Given url baseURL
-    And path '11'
-    And request {"id": 11,"userName": "bb_updated","password": "striaang_updated"}
+    Given path '11'
+    And request requestPayload
     When method PUT
     Then status 200
     And match response.userName == 'bb_updated'
@@ -22,10 +24,8 @@ Feature: Update User scenario
     * print response
 
   Scenario: verify entire response format is matching correct for updated user
-    * def baseURL = 'https://fakerestapi.azurewebsites.net/api/v1/Users'
-    Given url baseURL
-    And path '11'
-    And request {"id": 11,"userName": "bb_updated","password": "striaang_updated"}
+    Given path '11'
+    And request requestPayload
     When method PUT
     Then status 200
     * def expectedResponse =
@@ -39,25 +39,19 @@ Feature: Update User scenario
     * print response
 
   Scenario: verify user is getting error when not passed mandatory parameter id for update
-    * def baseURL = 'https://fakerestapi.azurewebsites.net/api/v1/Users'
-    Given url baseURL
-    And request {"id": 11,"userName": "bb_updated","password": "striaang_updated"}
+    Given request requestPayload
     When method PUT
     Then status 405
     * print response
 
   Scenario: verify response when given empty id for update user
-    * def baseURL = 'https://fakerestapi.azurewebsites.net/api/v1/Users'
-    Given url baseURL
-    And path ''
-    And request {"id": ,"userName": "bb_updated","password": "striaang_updated"}
+    Given path ''
+    And request requestPayload
     When method PUT
     Then status 405
 
   Scenario: verify response when given all fileds empty in request for update user
-    * def baseURL = 'https://fakerestapi.azurewebsites.net/api/v1/Users'
-    Given url baseURL
-    And path '11'
+    Given path '11'
     And request {"id": ,"userName": "","password": ""}
     When method PUT
     Then status 400
