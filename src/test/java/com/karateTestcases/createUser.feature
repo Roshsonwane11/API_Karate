@@ -35,7 +35,7 @@ Feature: Create New User
     When method POST
     Then status 200
 
-    Scenario: Verify new user creation entire response
+  Scenario: Verify new user creation entire response
     * def baseURL = 'https://fakerestapi.azurewebsites.net/api/v1/Users'
     Given url baseURL
     And request {"id": 11,"userName": "aa","password": "striaang"}
@@ -43,4 +43,3 @@ Feature: Create New User
     Then status 200
     And match response == {"id": 11,"userName": "aa","password": "striaang"}
     * print response
-    
