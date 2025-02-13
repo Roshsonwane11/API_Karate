@@ -1,4 +1,3 @@
-@todays
 Feature: Test POST API to create an author
 
   Background: 

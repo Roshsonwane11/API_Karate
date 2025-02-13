@@ -1,4 +1,3 @@
-@todays
 Feature: Authors API Test with GET method
 
  Background:
