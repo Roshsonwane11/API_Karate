@@ -22,7 +22,7 @@ Feature: API testing for CoverPhotos
     And match response.idBook == 7879
     And match response.url == "https://placeholdjkjkjhkjhkh"
     
-    @todays
+   
     Scenario: verify response code when update coverphotos with valid data
     Given path '/144'
     And request requestPayload

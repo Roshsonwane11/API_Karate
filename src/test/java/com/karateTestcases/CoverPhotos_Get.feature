@@ -7,7 +7,6 @@ Feature: API testing for CoverPhotos
     * def expectedResponseSingleObject = read('classpath:responsePayload/getCoverphotosSingleObjectFromResponse.json')
   
 
-@todays
   Scenario: verify get all list of coverphoto when request is valid
     Given method GET
     Then status 200

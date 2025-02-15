@@ -7,7 +7,6 @@ Feature: API testing for CoverPhotos
     * def responsePayloadForNewUser = read('classpath:responsePayload/createCoverphotosResponseForNewUser.json')
     
     
-    @todays
     Scenario: verify create coverphotos
     Given request requestPayload
     When method post
