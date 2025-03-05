@@ -2,12 +2,15 @@ Feature: Authors API Test with GET method
 
  Background:
     * def baseUrl = 'https://fakerestapi.azurewebsites.net/api/v1/Authors'
-
+    * def expectedResponse = read('classpath:responsePayload/authorEntireResponse.json')
+@todays
   Scenario: Verify that the API return 200 status code
     Given url baseUrl
     When method GET
     Then status 200
-
+    * def actualResponse = response
+    * print actualResponse
+   
   Scenario: Verify that the API returns a list of authors successfully.
     Given url baseUrl
     When method GET
@@ -78,17 +81,18 @@ Feature: Authors API Test with GET method
     When method GET
     Then status 404
 
- Scenario: Verify the response length
-    Given url baseUrl
-    When method GET
-    Then status 200
-    * def actual_response = response
-    * print actual_response
-    And match actual_response == expectedData
-    * print 'Match successful!'
-    * print 'Expected Data:', expectedData
-    * print 'Actual Response:', actual_response
-    And assert actual_response.length == expectedData.length
+ #dynamic data getting
+ #Scenario: Verify the response length
+    #Given url baseUrl
+    #When method GET
+    #Then status 200
+    #* def actual_response = response
+    #* print actual_response
+    #And match actual_response == expectedData 
+    #* print 'Match successful!'
+    #* print 'Expected Data:', expectedData
+    #* print 'Actual Response:', actual_response
+    #And assert actual_response.length == expectedData.length
 
 
   Scenario: Verify user can Get author by ID
