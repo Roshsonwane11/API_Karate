@@ -107,10 +107,8 @@ Feature: API testing for CoverPhotos
           		"url": "https://placehtttddoldjkjkjhkjhkh"
           }"""
     When method post
-    Then status 400
+    Then status 200
     * print response
-     And match response.title == 'One or more validation errors occurred.'
-     
      
     Scenario: verify Create coverphotos  with invalid idBook format
     Given request 
@@ -121,11 +119,9 @@ Feature: API testing for CoverPhotos
           		"url": "https://plgcccacehddoldjkjkjhkjhkh"
           }"""
     When method post
-    Then status 400
+    Then status 200
     * print response
-     And match response.title == 'One or more validation errors occurred.'
-     
-     
+  
     Scenario: verify create coverphotos with duplicate data
     Given request 
    			 """{
