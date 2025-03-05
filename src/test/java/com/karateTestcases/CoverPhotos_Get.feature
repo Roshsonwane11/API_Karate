@@ -26,7 +26,7 @@ Feature: API testing for CoverPhotos
     And match response[0].url == "https://placeholdit.imgix.net/~text?txtsize=33&txt=Book 1&w=250&h=350"
     * print response
 
-@todays
+
   Scenario: Verify valid coverphoto details are getting for valid user id
     Given path '45'
     When method GET
